@@ -1,1 +1,8 @@
-solSystem = {()}
+solSystem = {
+  init:{
+    sun
+  },
+  finish:{
+
+  }
+}

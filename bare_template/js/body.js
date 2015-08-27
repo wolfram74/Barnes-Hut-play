@@ -8,17 +8,33 @@ function Body(args){
 
 Body.prototype.kineticEnergy = function(){
   var vsquared = 0
-  for(i=0; i < this.velocity.length; i++){
+  for(var i=0; i < this.velocity.length; i++){
     vsquared += (this.velocity[i]*this.velocity[i])
   };
   return vsquared*this.mass/2
 };
 
+Body.prototype.potentialEnergy = function(){
+  var totePE = 0
+  for(var i=0; i < this.system.bodies.length; i++){
+    if( this != this.system.bodies[i]){
+      console.log(i)
+      totePE += this.twoBodyPE(this.system.bodies[i])
+    };
+  };
+  return totePE
+};
+
 
 Body.prototype.displacement = function(otherBody){
   var sepVec = []
-  for(i=0; i < this.position.length; i++){
+  for(var i=0; i < this.position.length; i++){
     sepVec.push(otherBody.position[i]-this.position[i])
   };
   return sepVec
+};
+
+Body.prototype.twoBodyPE = function(otherBody){
+  var sepVec = this.displacement(otherBody)
+  return otherBody.mass/Utils.arrayMag(sepVec)
 };

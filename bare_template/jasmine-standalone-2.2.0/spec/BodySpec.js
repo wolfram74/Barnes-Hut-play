@@ -34,6 +34,6 @@ describe("Body tests", function() {
       2:{position:[20,1,0],velocity:[4.1,3,0],mass:100}
     }
     var sys2 = new System(data2)
-    expect(sys2.bodies[0].potentialEnergy).toEqual(5)
+    expect(sys2.bodies[0].potentialEnergy()).toEqual(5)
   })
 });

@@ -13,3 +13,12 @@ System.prototype.kineticEnergy = function(){
   };
   return toteKE
 };
+System.prototype.potentialEnergy = function(){
+  var totePE = 0
+  console.log('running potential energy check for system')
+  for(var i=0; i < this.bodies.length; i++){
+    totePE += this.bodies[i].potentialEnergy()
+    console.log("checking body", i, totePE)
+  };
+  return totePE
+};

@@ -34,3 +34,6 @@ With those constraints we get conversion factors of
 for context, this means the sun is 5*(10**13) pseudo mass units, interestingly
 an AU is 1*(10**6) pseudo length units by definition
 and a year is 13306808290671.4 pseudo time units
+
+** Test Data
+ephemeris velocities is in units of days! meters/day!

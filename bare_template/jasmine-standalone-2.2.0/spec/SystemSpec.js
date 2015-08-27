@@ -45,5 +45,12 @@ describe("System tests", function() {
     }
     var sys2 = new System(data2)
     expect(sys2.potentialEnergy()).toEqual(11)
+    var data3 = {
+      1:{position:[0,10,0],velocity:[1,3,0],mass:100},
+      2:{position:[0,0,0],velocity:[4.1,3,0],mass:10},
+      3:{position:[0,5,0],velocity:[72,.5,0],mass:50}
+    }
+    var sys3 = new System(data3)
+    expect(sys3.potentialEnergy()).toEqual(53)
   })
 });

@@ -20,12 +20,13 @@ describe("Body tests", function() {
     var args2 = {position:[2,0,0],velocity:[1,0,0],mass:10}
     var body = new Body(args)
     var body2 = new Body(args2)
-    expect(body.distanceTo(body2)).toEqual(Math.pow(5, 0.5))
+    expect(body.displacement(body2)).toEqual([2,-1,0])
+    expect(body2.displacement(body)).toEqual([-2,1,0])
   })
   it("Can calculate it's kinetic energy",function(){
     var args = {position:[0,1,0],velocity:[1,4,0],mass:10}
     var body = new Body(args)
-    expect(body.kineticEnergy).toEqual(85)
+    expect(body.kineticEnergy()).toEqual(85)
   })
   it("Can calculate it's potential energy if part of a system",function(){
     var data2 = {

@@ -165,7 +165,8 @@ testModule = (function(){
   var conversions = {
     mass: 2.51369966316425* Math.pow(10 , -17),
     length: 6.68458712226845* Math.pow(10 , -6),
-    time: 421956.122865024
+    time: 421956.122865024,
+    gravity: 6.67384 * Math.pow(10, -11)
   };
   conversions.speed = conversions.length/conversions.time
   API.conversions = conversions

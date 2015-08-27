@@ -23,5 +23,27 @@ describe("System tests", function() {
     sys.timeStep()
     expect(sys.bodies[0].velocity).not.toEqual([0,1,0])
   })
-
+  it("can report on kinetic energy of system", function(){
+    var data2 = {
+      1:{position:[0,1,0],velocity:[1,3,0],mass:7}
+    }
+    var sys2 = new System(data2)    
+    expect(sys2.kineticEnergy).toEqual(35)
+  })
+  it("can report on kinetic energy of system with multiple bodies", function(){
+    var data2 = {
+      1:{position:[0,1,0],velocity:[1,3,0],mass:7},
+      2:{position:[1,1,0],velocity:[4.1,3,0],mass:9}
+    }
+    var sys2 = new System(data2)
+    expect(sys2.kineticEnergy).toEqual(35+116.145)
+  })
+  it("can report on potential energy of system", function(){
+    var data2 = {
+      1:{position:[0,10,0],velocity:[1,3,0],mass:100},
+      2:{position:[0,0,0],velocity:[4.1,3,0],mass:10}
+    }
+    var sys2 = new System(data2)
+    expect(sys2.potentialEnergy).toEqual(11)
+  })
 });

@@ -21,9 +21,7 @@ describe("test data", function(){
       var ratios = []
       for(var i = 0; i <mksSys.bodies.length ; i++){
         var ke = mksSys.bodies[i].kineticEnergy()
-        console.log(ke)
         var pe = mksSys.bodies[i].potentialEnergy()*testModule.conversions.gravity
-        console.log(pe)
         ratios.push(ke/pe)
       };
       console.log(ratios)
@@ -31,15 +29,17 @@ describe("test data", function(){
       for(var i = 0; i <ratios.length;i++){
         sum += ratios[i]
       };
-      expect(sum/ratios.length).toBeCloseTo(.5, 3)
+      expect(sum/(ratios.length-1)).toBeCloseTo(.5, 2)
     })
   })
   describe("test data in Plmt", function(){
+    var PmltSys
     beforeEach(function() {
-      var PmltSys = new System(testModule.convert(solSystem.init))
+      PmltSys = new System(testModule.convert(solSystem.init))
     });
     it("has less kinetic energy than potential energy, is bound overall",function(){
-      expect(PmltSys.potentialEnergy*testModule.gravity()).toBeGreaterThan(PmltSys.kineticEnergy())      
+      console.log(PmltSys, PmltSys.potentialEnergy(), PmltSys.kineticEnergy())
+      expect(PmltSys.potentialEnergy()).toBeGreaterThan(PmltSys.kineticEnergy())
     })
     it("the planets almost satisfy the virial theorem of having twice as much potential energy as kinetic energy",function(){
       var ratios = []
@@ -51,13 +51,15 @@ describe("test data", function(){
       console.log(ratios)
       var sum = 0
       for(var i = 0; i <ratios.length;i++){
-        sum += raios[i]
+        sum += ratios[i]
       };
-      expect(sum/ratios.length).toBeGreaterThan(.495)
-      expect(sum/ratios.length).not.toBeGreaterThan(.505)
+      expect(sum/(ratios.length-1)).toBeCloseTo(.5, 3)
     })
     it("has matching ratios with respect to mks data.",function(){
       var mksSys = new System(solSystem.init)
+      for(var i = 0; i <mksSys.bodies.length ; i++){
+        mksSys.bodies[i].velocity = Utils.arrayScale(mksSys.bodies[i].velocity, 1/86400)
+      };
       var ratios = []
       for(var i = 0; i <PmltSys.bodies.length ; i++){
         var ke = PmltSys.bodies[i].kineticEnergy()

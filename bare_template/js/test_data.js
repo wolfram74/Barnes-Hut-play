@@ -170,6 +170,19 @@ testModule = (function(){
   };
   conversions.speed = conversions.length/conversions.time
   API.conversions = conversions
+
+  API.convert = function(system){
+    var output = {}
+    for(var body in system){
+      output[body] = {};
+      output[body]["mass"] = system[body].mass*API.conversions.mass;
+      var tempV = Utils.arrayScale(system[body].velocity, 1/86400);
+      console.log(tempV, Utils.arrayMag(tempV), body)
+      output[body]["velocity"] = Utils.arrayScale(tempV, API.conversions.speed);
+      output[body]["position"] = Utils.arrayScale(system[body].position,API.conversions.length);
+    };
+    return output;
+  }
   return API
 })()
 

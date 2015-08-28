@@ -21,7 +21,7 @@ describe("System tests", function() {
     }
     var sys = new System(data)
     sys.timeStep()
-    expect(sys.bodies[0].velocity).not.toEqual([0,1,0])
+    expect(sys.bodies[0].position).not.toEqual([0,1,0])
   })
   it("can report on kinetic energy of system", function(){
     var data2 = {
@@ -44,13 +44,13 @@ describe("System tests", function() {
       2:{position:[0,0,0],velocity:[4.1,3,0],mass:10}
     }
     var sys2 = new System(data2)
-    expect(sys2.potentialEnergy()).toEqual(11)
+    expect(sys2.potentialEnergy()).toEqual(200)
     var data3 = {
       1:{position:[0,10,0],velocity:[1,3,0],mass:100},
       2:{position:[0,0,0],velocity:[4.1,3,0],mass:10},
       3:{position:[0,5,0],velocity:[72,.5,0],mass:50}
     }
     var sys3 = new System(data3)
-    expect(sys3.potentialEnergy()).toEqual(53)
+    expect(sys3.potentialEnergy()).toEqual(2400)
   })
 });

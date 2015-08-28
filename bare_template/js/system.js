@@ -4,6 +4,8 @@ function System(args){
     args[body].system = this
     this.bodies.push(new Body(args[body]))
   };
+  this.dt = 1
+  this.maxT = 1000
 };
 
 System.prototype.kineticEnergy = function(){
@@ -15,10 +17,14 @@ System.prototype.kineticEnergy = function(){
 };
 System.prototype.potentialEnergy = function(){
   var totePE = 0
-  console.log('running potential energy check for system')
   for(var i=0; i < this.bodies.length; i++){
     totePE += this.bodies[i].potentialEnergy()
-    console.log("checking body", i, totePE)
   };
   return totePE
+};
+
+System.prototype.timeStep = function(){
+  for(var i=0; i < this.bodies.length; i++){
+    this.bodies[i].timeStep(this.dt)
+  };
 };

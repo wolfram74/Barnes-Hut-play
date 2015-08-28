@@ -18,11 +18,10 @@ Body.prototype.potentialEnergy = function(){
   var totePE = 0
   for(var i=0; i < this.system.bodies.length; i++){
     if( this != this.system.bodies[i]){
-      console.log(i)
       totePE += this.twoBodyPE(this.system.bodies[i])
     };
   };
-  return totePE
+  return totePE*this.mass
 };
 
 
@@ -37,4 +36,8 @@ Body.prototype.displacement = function(otherBody){
 Body.prototype.twoBodyPE = function(otherBody){
   var sepVec = this.displacement(otherBody)
   return otherBody.mass/Utils.arrayMag(sepVec)
+};
+
+Body.prototype.timeStep = function(dt){
+  
 };

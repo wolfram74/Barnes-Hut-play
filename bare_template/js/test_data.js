@@ -175,10 +175,10 @@ testModule = (function(){
     var output = {}
     for(var body in system){
       output[body] = {};
-      output[body]["mass"] = system[body].mass*API.conversions.mass;
+      output[body]["mass"] = system[body].mass*API.conversions.gravity;
       var tempV = Utils.arrayScale(system[body].velocity, 1/86400);
-      output[body]["velocity"] = Utils.arrayScale(tempV, API.conversions.speed);
-      output[body]["position"] = Utils.arrayScale(system[body].position,API.conversions.length);
+      output[body]["velocity"] = tempV//Utils.arrayScale(tempV, API.conversions.speed);
+      output[body]["position"] = system[body].position//Utils.arrayScale(system[body].position,API.conversions.length);
     };
     return output;
   }

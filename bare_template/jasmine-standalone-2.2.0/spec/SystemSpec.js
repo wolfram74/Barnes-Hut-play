@@ -57,7 +57,7 @@ describe("System tests", function() {
 
   })
   describe("accuracy", function(){
-    function radial(theta, ){
+    function radial(theta, epsi, constant){
 
     }
   })

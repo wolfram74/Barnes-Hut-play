@@ -31,7 +31,7 @@ describe("test data", function(){
       expect(sum/(ratios.length-1)).toBeCloseTo(.5, 2)
     })
   })
-  xdescribe("test data in Plmt", function(){
+  describe("test data in Plmt", function(){
     var PmltSys
     beforeEach(function() {
       PmltSys = new System(testModule.convert(solSystem.init))
@@ -50,7 +50,8 @@ describe("test data", function(){
       for(var i = 0; i <ratios.length;i++){
         sum += ratios[i]
       };
-      expect(sum/(ratios.length-1)).toBeCloseTo(.5, 3)
+      console.log(ratios)
+      expect(sum/(ratios.length-1)).toBeCloseTo(.5, 2)
     })
     it("has matching ratios with respect to mks data.",function(){
       var mksSys = new System(solSystem.init)
@@ -70,7 +71,7 @@ describe("test data", function(){
         MKSratios.push(ke/pe)
       };
       for(var i = 0; i <ratios.length;i++){
-        expect(ratios[i]).toEqual(MKSratios[i])
+        expect(ratios[i]).toBeCloseTo(MKSratios[i],3)
       };
     })
 

@@ -4,6 +4,8 @@ function Body(args){
   this.position = args.position
   this.velocity = args.velocity
   this.mass = args.mass
+  this.deltaVel = null
+  this.deltaPos = null
 };
 
 Body.prototype.kineticEnergy = function(){
@@ -39,5 +41,23 @@ Body.prototype.twoBodyPE = function(otherBody){
 };
 
 Body.prototype.timeStep = function(dt){
-  
+  this.deltaVel = new Array(this.velocity.length+1).join('0').split('').map(parseFloat)
+  this.deltaPos = new Array(this.position.length+1).join('0').split('').map(parseFloat)
+  this.acceleration = new Array(this.position.length+1).join('0').split('').map(parseFloat)
+  for(var i=0; i < this.system.bodies.length; i++){
+    if( this != this.system.bodies[i]){
+      var other = this.system.bodies[i];
+      var sepVec = this.displacement(other);
+      var rcubed = Math.pow(Utils.arrayMag(sepVec), 3);
+      var deltaAcc = Utils.arrayScale(sepVec, other.mass/rcubed);
+      this.acceleration = Utils(this.acceleration, deltaAcc);
+    };
+  };
+  this.deltaPos = Utils.arrayScale(this.velocity, dt);
+  var adtdt2 = Utils.arrayScale(this.acceleration, (Math.pow(dt, 2)/2));
+  this.deltaPos = Utils.arrayAdd(this.deltaPos, adtdt2);
+  this.deltaVel = Utils.arrayScale(this.acceleration, dt);
+  // debugger
+  this.position = Utils.arrayAdd(this.position, this.deltaPos);
+  this.velocity = Utils.arrayAdd(this.velocity, this.deltaVel);
 };

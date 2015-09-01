@@ -177,7 +177,6 @@ testModule = (function(){
       output[body] = {};
       output[body]["mass"] = system[body].mass*API.conversions.mass;
       var tempV = Utils.arrayScale(system[body].velocity, 1/86400);
-      console.log(tempV, Utils.arrayMag(tempV), body)
       output[body]["velocity"] = Utils.arrayScale(tempV, API.conversions.speed);
       output[body]["position"] = Utils.arrayScale(system[body].position,API.conversions.length);
     };

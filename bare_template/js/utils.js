@@ -15,5 +15,13 @@ Utils = (function(){
     };
     return out    
   };
+
+  API.arrayAdd = function(array1, array2){
+    var out = []
+    for(var i=0; i < array1.length; i++){
+      out.push(array1[i]+array2[i])
+    };
+    return out
+  }
   return API
 })()

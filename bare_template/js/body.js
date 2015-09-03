@@ -40,7 +40,7 @@ Body.prototype.twoBodyPE = function(otherBody){
   return otherBody.mass/Utils.arrayMag(sepVec)
 };
 
-Body.prototype.timeStep = function(dt){
+Body.prototype.calcDeltas = function(dt){
   this.deltaVel = new Array(this.velocity.length+1).join('0').split('').map(parseFloat)
   this.deltaPos = new Array(this.position.length+1).join('0').split('').map(parseFloat)
   this.acceleration = new Array(this.position.length+1).join('0').split('').map(parseFloat)
@@ -50,7 +50,7 @@ Body.prototype.timeStep = function(dt){
       var sepVec = this.displacement(other);
       var rcubed = Math.pow(Utils.arrayMag(sepVec), 3);
       var deltaAcc = Utils.arrayScale(sepVec, other.mass/rcubed);
-      this.acceleration = Utils(this.acceleration, deltaAcc);
+      this.acceleration = Utils.arrayAdd(this.acceleration, deltaAcc);
     };
   };
   this.deltaPos = Utils.arrayScale(this.velocity, dt);
@@ -58,6 +58,9 @@ Body.prototype.timeStep = function(dt){
   this.deltaPos = Utils.arrayAdd(this.deltaPos, adtdt2);
   this.deltaVel = Utils.arrayScale(this.acceleration, dt);
   // debugger
+};
+
+Body.prototype.timeStep = function(){
   this.position = Utils.arrayAdd(this.position, this.deltaPos);
   this.velocity = Utils.arrayAdd(this.velocity, this.deltaVel);
-};
+}

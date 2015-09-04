@@ -39,12 +39,13 @@ constants = [c1, c2, c3, c4, c5, c6, c7, G0]
 # print sympy.solve([defins[0], defins[1], defins[8], defins[5], defins[9], defins[10], defins[11], defins[11]], [c1, m, Pl, Pt, Pm, Gp, Msol]) #expreses c1
 results = sympy.solve([defins[4], defins[6], defins[7], defins[12], defins[13], defins[14], defins[16], defins[17], ], constants)
 conversions = results[0][:3]
-print conversions
-print (1.9891*(10**30)*conversions[0])
-print len(str(int(1.9891*(10**30)*conversions[0])))
-print 149597870700.0*conversions[1]
-print len(str(int(149597870700.0*conversions[1])))
-print (365*24*3600)*conversions[2]
-print len(str(int((365*24*3600)*conversions[2])))
+# print conversions
+# print (1.9891*(10**30)*conversions[0])
+# print len(str(int(1.9891*(10**30)*conversions[0])))
+# print 149597870700.0*conversions[1]
+# print len(str(int(149597870700.0*conversions[1])))
+# print (365*24*3600)*conversions[2]
+# print len(str(int((365*24*3600)*conversions[2])))
 # print sympy.solve([defins[1], defins[8], defins[9], defins[10], defins[11], defins[11]], [c1, m, Pl, Pt, Pm, Gp, Msol])
 # print (10**6*(10**4)**2)/(2*1.9891*10**30)
+

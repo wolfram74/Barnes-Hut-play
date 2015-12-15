@@ -1,0 +1,41 @@
+aspects of project that need to be worked out
+
+validation
+  analytic
+    solve two body problem
+      taylors mechanics (p293, pdf308)
+    convert cartesian to reduced mass and vice versa
+    come up with function starts with initial condition at T=0, returns T=whenever
+    compare simulated results
+    decide on metric
+  observational
+    download some number of days/years of observed data for solar system
+    convert mks units into G=1 units
+    decide on comparison metric and write subroutine
+
+interface
+  drawing
+    setting gray scale values on grid
+    calculating center of mass quickly
+    turning that into intial mass distribution
+  options
+    build sliders
+      sliders for mass used (not user controllable)
+      sliders for initial angular kinetic energy, user decidable
+
+algorithm
+  accuracy
+    use newton's method (N^2) against validation tests
+    use RK45 (N^2) against validation tests and newtons method
+  speed
+    coming up with test cases for quad tree
+    building quad tree using x-y
+    building oct tree using x-y-z
+    building tree with z-order curves and morton codes
+    use newton's method (NlnN) against validation tests
+    use RK45 (NlnN) against validation tests and newtons method
+
+acceleration
+  implement part or all with parallel.js
+  if not an option in javascript, see how hard it would be to execute some of the solved aspects in python.
+

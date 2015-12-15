@@ -76,11 +76,12 @@ describe("System tests", function() {
     };
 
     function epsiCalc(m1, m2, r0, v0, constant){
-      var left = (1/r0- r0*v0/(m2*m1))*constant
+      var left = (1/r0- r0*v0/(m2*m1))
+      return left*constant
     }
     function cartesianConvert(body){
       var theta = Math.atan2(body.position[1],body.position[0])
-      var radius = Utils.arraymag(body.position)
+      var radius = Utils.arrayMag(body.position)
       return [theta, radius]
     }
 
@@ -121,10 +122,42 @@ describe("System tests", function() {
     })
 
     it("it matches well with the solved 2 body problem",function(){
-      var data1 = {
+      var data = {
         1:{position:[0,0,0],velocity:[0,0,0],mass:1e6},
-        2:{position:[0,0,0],velocity:[0,0,0],mass:1}
-      }
+        2:{position:[1000,0,0],velocity:[0,31.62277,0],mass:1}
+      };
+      var Cval = constantCalc(1e6, 1, 1000, 1)
+      var Eval = epsiCalc(1e6, 1, 1000, 1, Cval)
+      console.log(Cval, Eval)
+      var sys = new System(data);
+      sys.dt=(1/Math.pow(2,4))
+      var cartResults = []
+      var polarResults = []
+      for(var i=0; i < 4000; i++){
+        sys.timeStep()
+        cartResults.push(sys.bodies[1].position)
+        polarResults.push(cartesianConvert(sys.bodies[1]))
+        // console.log(cartesianConvert(sys.bodies[0]))
+      };
+      console.log(cartResults[0])
+      console.log(cartResults[1])
+      console.log(cartResults[999])
+      console.log(polarResults[0])
+      console.log(polarResults[1])
+      console.log(polarResults[2])
+      console.log(polarResults[3])
+      console.log(polarResults[4])
+      console.log(polarResults[5])
+      console.log(polarResults[6])
+      console.log(polarResults[7])
+      console.log(polarResults[polarResults.length-1])
+      var deltaTheta = []
+      for(var i = 0; polarResults.length-1 > i; i++){
+        var dth = polarResults[i+1][0]-polarResults[i][0]
+        deltaTheta.push(dth)
+      };
+      console.log(deltaTheta)
+      expect(true).toBe(false)
     });
   });
 });

@@ -54,8 +54,8 @@ Body.prototype.calcDeltas = function(dt){
     };
   };
   this.deltaPos = Utils.arrayScale(this.velocity, dt);
-  var adtdt2 = Utils.arrayScale(this.acceleration, (Math.pow(dt, 2)/2));
-  this.deltaPos = Utils.arrayAdd(this.deltaPos, adtdt2);
+  // var adtdt2 = Utils.arrayScale(this.acceleration, (Math.pow(dt, 2)/2));
+  // this.deltaPos = Utils.arrayAdd(this.deltaPos, adtdt2);
   this.deltaVel = Utils.arrayScale(this.acceleration, dt);
   // debugger
 };

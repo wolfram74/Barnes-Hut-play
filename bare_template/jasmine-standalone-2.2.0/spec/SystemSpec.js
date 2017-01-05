@@ -27,7 +27,7 @@ describe("System tests", function() {
       var data2 = {
         1:{position:[0,1,0],velocity:[1,3,0],mass:7}
       }
-      var sys2 = new System(data2)    
+      var sys2 = new System(data2)
       expect(sys2.kineticEnergy()).toEqual(35)
     })
     it("can report on kinetic energy of system with multiple bodies", function(){
@@ -105,7 +105,7 @@ describe("System tests", function() {
       var compare = makeFinal()
       testSys.maxT = 31536000
       testSys.dt = 86.4
-      console.time("1 year") 
+      console.time("1 year")
       testSys.run()
       testSys.bodies.sort(compareMass)
       compare.bodies.sort(compareMass)
@@ -121,7 +121,7 @@ describe("System tests", function() {
       console.timeEnd("1 year")
     })
 
-    it("it matches well with the solved 2 body problem",function(){
+    xit("it matches well with the solved 2 body problem",function(){
       var data = {
         1:{position:[0,0,0],velocity:[0,0,0],mass:1e6},
         2:{position:[1000,0,0],velocity:[0,31.62277,0],mass:1}

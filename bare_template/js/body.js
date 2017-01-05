@@ -26,6 +26,9 @@ Body.prototype.potentialEnergy = function(){
   return totePE*this.mass
 };
 
+Body.prototype.angularMomentum = function(){
+
+}
 
 Body.prototype.displacement = function(otherBody){
   var sepVec = []

@@ -14,5 +14,22 @@ twoBodyUtils = (function(){
     return new Body({position: centered, velocity: sepDot, mass: redMass})
   }
 
+  API.makeCenter = function(body1, body2){
+    var totalMass = body1.mass+body2.mass;
+    var m1r1 = Utils.arrayScale(body1.position, body1.mass)
+    var m2r2 = Utils.arrayScale(body2.position, body2.mass)
+    var m1v1 = Utils.arrayScale(body1.velocity, body1.mass)
+    var m2v2 = Utils.arrayScale(body2.velocity, body2.mass)
+    var averagePos = Utils.arrayScale(
+      Utils.arrayAdd(m1r1, m2r2),1/totalMass)
+    var averageVel = Utils.arrayScale(
+      Utils.arrayAdd(m1v1, m2v2),1/totalMass)
+    var centerOfMass = new Body({
+      position: averagePos,
+      velocity: averageVel,
+      mass: totalMass})
+    return centerOfMass;
+  }
+
   return API
 })()

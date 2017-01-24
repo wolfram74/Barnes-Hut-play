@@ -36,27 +36,31 @@ describe("Two body system tests", function() {
         expect(twoBodyUtils.makeRandomBody().constructor.name).toEqual('Body')
         expect(twoBodyUtils.makeRandomBody().position.length).toEqual(2)
       })
-      it('should allow specifying ranges',function(){
+      it('should allow specifying ranges: statistical test',function(){
         var bodies = [];
         var theoryM = 1000;
         var theoryR = 1000000;
         var theoryV = 500;
-        var maxM;
-        var maxR;
-        var maxV;
+        var maxM = 0;
+        var maxR = 0;
+        var maxV = 0;
         for(var loops=0; loops <200; loops++){
           bodies.push(twoBodyUtils.makeRandomBody(
             theoryM, theoryR, theoryV
             ))
-          if(bodies.mass > maxM){maxM = bodies.mass};
-          if(Utils.arrayMag(bodies.position) > maxR){
-            maxR = Utils.arrayMag(bodies.position)
+          var body = bodies[loops]
+          console.log(loops, body)
+          if(body.mass > maxM){
+            maxM = body.mass
           };
-          if(Utils.arrayMag(bodies.velocity) > maxV){
-            maxV = Utils.arrayMag(bodies.velocity)
+          if(Utils.arrayMag(body.position) > maxR){
+            maxR = Utils.arrayMag(body.position)
+          };
+          if(Utils.arrayMag(body.velocity) > maxV){
+            maxV = Utils.arrayMag(body.velocity)
           };
         }
-        expect(bodies.list).toEqual(200);
+        expect(bodies.length).toEqual(200);
         expect(maxM).toBeGreaterThan(theoryM*0.9);
         expect(maxM).toBeLessThan(theoryM*1.1);
         expect(maxR).toBeGreaterThan(theoryR*0.9);

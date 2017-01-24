@@ -32,7 +32,18 @@ twoBodyUtils = (function(){
   }
 
   API.makeRandomBody = function(maxM=100, maxR=100, maxV=10){
-
+    var mass = Math.random()*maxM;
+    var radius = Math.random()*maxR;
+    var speed = Math.random()*maxV;
+    var thetaR = Math.random()*2*Math.PI
+    var thetaV = Math.random()*2*Math.PI
+    var position = [Math.cos(thetaR)*radius, Math.sin(thetaR)*radius ]
+    var velocity = [Math.cos(thetaV)*speed, Math.sin(thetaV)*speed ]
+    return new Body({
+      mass: mass,
+      position: position,
+      velocity: velocity
+    })
   }
 
   return API

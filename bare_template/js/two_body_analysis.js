@@ -11,7 +11,7 @@ twoBodyUtils = (function(){
     var centMass = Utils.arrayScale(sumRad, body1.mass+body2.mass)
     var centered = Utils.arrayDif(sep, centMass)
     var sepDot = Utils.arrayDif(body1.velocity, body2.velocity)
-    return new Body({position: centered, velocity: sepDot, mass: redMass})
+    return new Body({position: sep, velocity: sepDot, mass: redMass})
   }
 
   API.makeCenter = function(body1, body2){
@@ -29,6 +29,10 @@ twoBodyUtils = (function(){
       velocity: averageVel,
       mass: totalMass})
     return centerOfMass;
+  }
+
+  API.makeRandomBody = function(maxM=100, maxR=100, maxV=10){
+
   }
 
   return API
